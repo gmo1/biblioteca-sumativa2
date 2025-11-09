@@ -53,12 +53,12 @@ public class GestionUsuarios extends JDialog {
         panel.add(cmbTipo);
 
         // Nombre
-        panel.add(new JLabel("Nombre Completo:"));
+        panel.add(new JLabel("Nombre Completo*:"));
         txtNombre = new JTextField();
         panel.add(txtNombre);
 
         // RUN
-        panel.add(new JLabel("RUN: (Con puntos y guion)"));
+        panel.add(new JLabel("RUN: (Con puntos y guion)*"));
         txtRun = new JTextField();
         panel.add(txtRun);
 
@@ -102,6 +102,25 @@ public class GestionUsuarios extends JDialog {
         tablaUsuarios = new JTable(modeloTabla);
         JScrollPane scrollPane = new JScrollPane(tablaUsuarios);
         panel.add(scrollPane, BorderLayout.CENTER);
+        
+        
+        tablaUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        
+        tablaUsuarios.getSelectionModel().addListSelectionListener(e->{
+        	if (e.getValueIsAdjusting()) return;
+        	int fila = tablaUsuarios.getSelectedRow();
+        	if (fila == -1) return;
+        	
+        	int modeloRow= tablaUsuarios.convertRowIndexToModel(fila);
+        	
+        	String run = (String) modeloTabla.getValueAt(modeloRow, 2);
+        	Usuario u =buscarusuarioPorRun(run);
+        	if (u != null) {
+        		usuarioFormulario(u);
+        	}
+        });
+        
 
         return panel;
     }
@@ -126,6 +145,112 @@ public class GestionUsuarios extends JDialog {
         panel.add(btnEliminar);
         panel.add(btnLimpiar);
         panel.add(btnVolver);
+        
+      //boton de realizar prestamo
+        btnAgregar.setBackground(new Color(52,152,219));
+        btnAgregar.setForeground(Color.GRAY);
+        btnAgregar.setFont(new Font("Arial", Font.BOLD, 12));
+        
+        //boton de realizar prestamo
+        btnEditar.setBackground(new Color(52,152,219));
+        btnEditar.setForeground(Color.GRAY);
+        btnEditar.setFont(new Font("Arial", Font.BOLD, 12));
+        
+        //boton de realizar prestamo
+        btnEliminar.setBackground(new Color(52,152,219));
+        btnEliminar.setForeground(Color.GRAY);
+        btnEliminar.setFont(new Font("Arial", Font.BOLD, 12));
+        
+        //boton de realizar prestamo
+        btnLimpiar.setBackground(new Color(52,152,219));
+        btnLimpiar.setForeground(Color.GRAY);
+        btnLimpiar.setFont(new Font("Arial", Font.BOLD, 12));
+        
+        //boton de realizar prestamo
+        btnVolver.setBackground(new Color(52,152,219));
+        btnVolver.setForeground(Color.GRAY);
+        btnVolver.setFont(new Font("Arial", Font.BOLD, 12));
+        
+        
+        
+        
+        final Color baseText = btnAgregar.getForeground();
+        final Color hoverText = Color.black;
+        final Color pressText = new Color(230,230,230);
+        
+        btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override public void mouseEntered(java.awt.event.MouseEvent e) { btnAgregar.setForeground(hoverText); }
+            @Override public void mouseExited (java.awt.event.MouseEvent e) { btnAgregar.setForeground(baseText);  }
+            @Override public void mousePressed(java.awt.event.MouseEvent e) { btnAgregar.setForeground(pressText); }
+            @Override public void mouseReleased(java.awt.event.MouseEvent e) {
+            	if(btnAgregar.getBounds().contains(e.getPoint())) btnAgregar.setForeground(hoverText);
+            	else btnAgregar.setForeground(baseText);
+            }
+        });
+        
+        final Color base1Text = btnAgregar.getForeground();
+        final Color hover1Text = Color.black;
+        final Color press1Text = new Color(230,230,230);
+        
+        btnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override public void mouseEntered(java.awt.event.MouseEvent e) { btnEditar.setForeground(hover1Text); }
+        	@Override public void mouseExited (java.awt.event.MouseEvent e) { btnEditar.setForeground(base1Text);  }
+        	@Override public void mousePressed(java.awt.event.MouseEvent e) { btnEditar.setForeground(press1Text); }
+        	@Override public void mouseReleased(java.awt.event.MouseEvent e) {
+        		if(btnEditar.getBounds().contains(e.getPoint())) btnEditar.setForeground(hover1Text);
+        		else btnEditar.setForeground(base1Text);
+        	}
+        });
+        
+        final Color base2Text = btnLimpiar.getForeground();
+        final Color hover2Text = Color.black;
+        final Color press2Text = new Color(230,230,230);
+        
+        btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override public void mouseEntered(java.awt.event.MouseEvent e) { btnLimpiar.setForeground(hover2Text); }
+        	@Override public void mouseExited (java.awt.event.MouseEvent e) { btnLimpiar.setForeground(base2Text);  }
+        	@Override public void mousePressed(java.awt.event.MouseEvent e) { btnLimpiar.setForeground(press2Text); }
+        	@Override public void mouseReleased(java.awt.event.MouseEvent e) {
+        		if(btnLimpiar.getBounds().contains(e.getPoint())) btnLimpiar.setForeground(hover2Text);
+        		else btnLimpiar.setForeground(base2Text);
+        	}
+        });
+        
+        final Color base3Text = btnEliminar.getForeground();
+        final Color hover3Text = Color.black;
+        final Color press3Text = new Color(230,230,230);
+        
+        btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override public void mouseEntered(java.awt.event.MouseEvent e) { btnEliminar.setForeground(hover3Text); }
+        	@Override public void mouseExited (java.awt.event.MouseEvent e) { btnEliminar.setForeground(base3Text);  }
+        	@Override public void mousePressed(java.awt.event.MouseEvent e) { btnEliminar.setForeground(press3Text); }
+        	@Override public void mouseReleased(java.awt.event.MouseEvent e) {
+        		if(btnEliminar.getBounds().contains(e.getPoint())) btnEliminar.setForeground(hover3Text);
+        		else btnEliminar.setForeground(base3Text);
+        	}
+        });
+        
+        final Color base4Text = btnVolver.getForeground();
+        final Color hover4Text = Color.black;
+        final Color press4Text = new Color(230,230,230);
+        
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override public void mouseEntered(java.awt.event.MouseEvent e) { btnVolver.setForeground(hover4Text); }
+        	@Override public void mouseExited (java.awt.event.MouseEvent e) { btnVolver.setForeground(base4Text);  }
+        	@Override public void mousePressed(java.awt.event.MouseEvent e) { btnVolver.setForeground(press4Text); }
+        	@Override public void mouseReleased(java.awt.event.MouseEvent e) {
+        		if(btnVolver.getBounds().contains(e.getPoint())) btnVolver.setForeground(hover4Text);
+        		else btnVolver.setForeground(base4Text);
+        	}
+        });
+        
+        
+        
+        
+        
+        
+        
+        
 
         return panel;
     }
@@ -184,13 +309,15 @@ public class GestionUsuarios extends JDialog {
             JOptionPane.showMessageDialog(this, "Seleccione un usuario de la tabla");
             return;
         }
-
+        
+        
         String runOriginal = (String) modeloTabla.getValueAt(filaSeleccionada, 2);
 
         try {
             String nombre = txtNombre.getText().trim();
             String run = txtRun.getText().trim();
             String genero = (String) cmbGenero.getSelectedItem();
+            
 
             if (nombre.isEmpty() || run.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Complete todos los campos obligatorios");
@@ -259,6 +386,34 @@ public class GestionUsuarios extends JDialog {
             };
             modeloTabla.addRow(fila);
         }
+    }
+    
+    public Usuario buscarusuarioPorRun(String run) {
+    	for (Usuario u : biblioteca.getUsuarios()) {
+    		if (u.getRun().equals(run)) return u;
+    	}
+    	return null;
+    }	
+    
+    public void usuarioFormulario(Usuario u) {
+    	txtNombre.setText(u.getNombreCompleto());
+    	
+    	if(u instanceof Estudiante) {
+    		cmbTipo.setSelectedItem("Estudiante");
+    		actualizarCampos();
+    		txtRun.setText(((Estudiante)u).getRun());
+    		cmbGenero.setSelectedItem(((Estudiante)u).getGenero());
+    		txtCarrera.setText(((Estudiante) u).getCarrera());
+    		txtProfesion.setText("");
+    		txtGrados.setText("");
+    	}else if(u instanceof Docente) {
+    		cmbTipo.setSelectedItem("Docente");
+    		actualizarCampos();
+    		txtRun.setText(((Docente)u).getRun());
+    		txtProfesion.setText(((Docente) u).getProfesion());
+    		txtGrados.setText(((Docente) u).getGrados());
+    		txtCarrera.setText("");
+    	}
     }
 
     private void limpiarCampos() {

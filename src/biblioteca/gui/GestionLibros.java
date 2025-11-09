@@ -1,7 +1,11 @@
 package biblioteca.gui;
 
 import biblioteca.controlador.Biblioteca;
+import biblioteca.modelo.Docente;
+import biblioteca.modelo.Estudiante;
 import biblioteca.modelo.Libro;
+import biblioteca.modelo.Usuario;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -105,6 +109,29 @@ public class GestionLibros extends JDialog {
         JButton btnLimpiar = new JButton("Limpiar");
         JButton btnVolver = new JButton("Volver");
 
+        btnAgregar.setBackground(new Color(46, 204, 113));
+        btnAgregar.setForeground(Color.GRAY);
+        btnAgregar.setFont(new Font("Arial", Font.BOLD, 12));
+        
+        
+        btnLimpiar.setBackground(new Color(46, 204, 113));
+        btnLimpiar.setForeground(Color.GRAY);
+        btnLimpiar.setFont(new Font("Arial", Font.BOLD, 12));
+        
+        
+        btnVolver.setBackground(new Color(46, 204, 113));
+        btnVolver.setForeground(Color.GRAY);
+        btnVolver.setFont(new Font("Arial", Font.BOLD, 12));
+        
+        
+        btnEliminar.setBackground(new Color(46, 204, 113));
+        btnEliminar.setForeground(Color.GRAY);
+        btnEliminar.setFont(new Font("Arial", Font.BOLD, 12));
+        
+        
+        
+        
+        
         btnAgregar.addActionListener(e -> agregarLibro());
         btnEliminar.addActionListener(e -> eliminarLibro());
         btnLimpiar.addActionListener(e -> limpiarCampos());
@@ -114,6 +141,70 @@ public class GestionLibros extends JDialog {
         panel.add(btnEliminar);
         panel.add(btnLimpiar);
         panel.add(btnVolver);
+        
+        
+        
+        final Color baseText = btnAgregar.getForeground();
+        final Color hoverText = Color.black;
+        final Color pressText = new Color(230,230,230);
+        
+        btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override public void mouseEntered(java.awt.event.MouseEvent e) { btnAgregar.setForeground(hoverText); }
+            @Override public void mouseExited (java.awt.event.MouseEvent e) { btnAgregar.setForeground(baseText);  }
+            @Override public void mousePressed(java.awt.event.MouseEvent e) { btnAgregar.setForeground(pressText); }
+            @Override public void mouseReleased(java.awt.event.MouseEvent e) {
+            	if(btnAgregar.getBounds().contains(e.getPoint())) btnAgregar.setForeground(hoverText);
+            	else btnAgregar.setForeground(baseText);
+            }
+        });
+        
+        
+        final Color base1Text = btnLimpiar.getForeground();
+        final Color hover1Text = Color.black;
+        final Color press1Text = new Color(230,230,230);
+        
+        btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override public void mouseEntered(java.awt.event.MouseEvent e) { btnLimpiar.setForeground(hover1Text); }
+        	@Override public void mouseExited (java.awt.event.MouseEvent e) { btnLimpiar.setForeground(base1Text);  }
+        	@Override public void mousePressed(java.awt.event.MouseEvent e) { btnLimpiar.setForeground(press1Text); }
+        	@Override public void mouseReleased(java.awt.event.MouseEvent e) {
+        		if(btnLimpiar.getBounds().contains(e.getPoint())) btnLimpiar.setForeground(hover1Text);
+        		else btnLimpiar.setForeground(base1Text);
+        	}
+        });
+        
+        
+        final Color base2Text = btnVolver.getForeground();
+        final Color hover2Text = Color.black;
+        final Color press2Text = new Color(230,230,230);
+        
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override public void mouseEntered(java.awt.event.MouseEvent e) { btnVolver.setForeground(hover2Text); }
+        	@Override public void mouseExited (java.awt.event.MouseEvent e) { btnVolver.setForeground(base2Text);  }
+        	@Override public void mousePressed(java.awt.event.MouseEvent e) { btnVolver.setForeground(press2Text); }
+        	@Override public void mouseReleased(java.awt.event.MouseEvent e) {
+        		if(btnVolver.getBounds().contains(e.getPoint())) btnVolver.setForeground(hover2Text);
+        		else btnVolver.setForeground(base2Text);
+        	}
+        });
+        
+        
+        final Color base3Text = btnEliminar.getForeground();
+        final Color hover3Text = Color.black;
+        final Color press3Text = new Color(230,230,230);
+        
+        btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override public void mouseEntered(java.awt.event.MouseEvent e) { btnEliminar.setForeground(hover3Text); }
+        	@Override public void mouseExited (java.awt.event.MouseEvent e) { btnEliminar.setForeground(base3Text);  }
+        	@Override public void mousePressed(java.awt.event.MouseEvent e) { btnEliminar.setForeground(press3Text); }
+        	@Override public void mouseReleased(java.awt.event.MouseEvent e) {
+        		if(btnEliminar.getBounds().contains(e.getPoint())) btnEliminar.setForeground(hover3Text);
+        		else btnEliminar.setForeground(base3Text);
+        	}
+        });
+        
+        
+        
 
         return panel;
     }
@@ -196,6 +287,15 @@ public class GestionLibros extends JDialog {
         }
     }
 
+    
+    
+    
+   
+    
+    
+    
+    
+    
     private void limpiarCampos() {
         txtIsbn.setText("");
         txtTitulo.setText("");

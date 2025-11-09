@@ -82,11 +82,22 @@ public class RealizarDevolucion extends JDialog {
         JButton btnLimpiar = new JButton("Limpiar");
         JButton btnVolver = new JButton("Volver");
 
-        btnBuscar.setBackground(new Color(52, 152, 219));
-        btnBuscar.setForeground(Color.WHITE);
+        btnBuscar.setBackground(new Color(230, 126, 34));
+        btnBuscar.setForeground(Color.GRAY);
+        btnBuscar.setFont(new Font("Arial", Font.BOLD, 12));
+        
         btnDevolver.setBackground(new Color(230, 126, 34));
-        btnDevolver.setForeground(Color.WHITE);
+        btnDevolver.setForeground(Color.GRAY);
         btnDevolver.setFont(new Font("Arial", Font.BOLD, 12));
+        
+        btnVolver.setBackground(new Color(230, 126, 34));
+        btnVolver.setForeground(Color.GRAY);
+        btnVolver.setFont(new Font("Arial", Font.BOLD, 12));
+        
+        
+        btnLimpiar.setBackground(new Color(230, 126, 34));
+        btnLimpiar.setForeground(Color.GRAY);
+        btnLimpiar.setFont(new Font("Arial", Font.BOLD, 12));
 
         btnBuscar.addActionListener(e -> buscarPrestamo());
         btnDevolver.addActionListener(e -> realizarDevolucion());
@@ -97,6 +108,68 @@ public class RealizarDevolucion extends JDialog {
         panel.add(btnDevolver);
         panel.add(btnLimpiar);
         panel.add(btnVolver);
+        
+        
+        
+        
+        
+        final Color baseText = btnBuscar.getForeground();
+        final Color hoverText = Color.black;
+        final Color pressText = new Color(230,230,230);
+        
+        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override public void mouseEntered(java.awt.event.MouseEvent e) { btnBuscar.setForeground(hoverText); }
+            @Override public void mouseExited (java.awt.event.MouseEvent e) { btnBuscar.setForeground(baseText);  }
+            @Override public void mousePressed(java.awt.event.MouseEvent e) { btnBuscar.setForeground(pressText); }
+            @Override public void mouseReleased(java.awt.event.MouseEvent e) {
+            	if(btnBuscar.getBounds().contains(e.getPoint())) btnBuscar.setForeground(hoverText);
+            	else btnBuscar.setForeground(baseText);
+            }
+        });
+        
+        
+        final Color base1Text = btnDevolver.getForeground();
+        final Color hover1Text = Color.black;
+        final Color press1Text = new Color(230,230,230);
+        
+        btnDevolver.addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override public void mouseEntered(java.awt.event.MouseEvent e) { btnDevolver.setForeground(hover1Text); }
+        	@Override public void mouseExited (java.awt.event.MouseEvent e) { btnDevolver.setForeground(base1Text);  }
+        	@Override public void mousePressed(java.awt.event.MouseEvent e) { btnDevolver.setForeground(press1Text); }
+        	@Override public void mouseReleased(java.awt.event.MouseEvent e) {
+        		if(btnDevolver.getBounds().contains(e.getPoint())) btnDevolver.setForeground(hoverText);
+        		else btnDevolver.setForeground(baseText);
+        	}
+        });
+        
+        
+        final Color base2Text = btnLimpiar.getForeground();
+        final Color hover2Text = Color.black;
+        final Color press2Text = new Color(230,230,230);
+        
+        btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override public void mouseEntered(java.awt.event.MouseEvent e) { btnLimpiar.setForeground(hover2Text); }
+        	@Override public void mouseExited (java.awt.event.MouseEvent e) { btnLimpiar.setForeground(base2Text);  }
+        	@Override public void mousePressed(java.awt.event.MouseEvent e) { btnLimpiar.setForeground(press2Text); }
+        	@Override public void mouseReleased(java.awt.event.MouseEvent e) {
+        		if(btnLimpiar.getBounds().contains(e.getPoint())) btnDevolver.setForeground(hoverText);
+        		else btnLimpiar.setForeground(baseText);
+        	}
+        });
+        
+        final Color base3Text = btnVolver.getForeground();
+        final Color hover3Text = Color.black;
+        final Color press3Text = new Color(230,230,230);
+        
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override public void mouseEntered(java.awt.event.MouseEvent e) { btnVolver.setForeground(hover3Text); }
+        	@Override public void mouseExited (java.awt.event.MouseEvent e) { btnVolver.setForeground(base3Text);  }
+        	@Override public void mousePressed(java.awt.event.MouseEvent e) { btnVolver.setForeground(press3Text); }
+        	@Override public void mouseReleased(java.awt.event.MouseEvent e) {
+        		if(btnVolver.getBounds().contains(e.getPoint())) btnVolver.setForeground(hoverText);
+        		else btnVolver.setForeground(baseText);
+        	}
+        });
 
         return panel;
     }

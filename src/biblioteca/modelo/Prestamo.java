@@ -14,8 +14,7 @@ public class Prestamo {
     private int diasPrestamo;
 
     // Constructor
-    public Prestamo(String runUsuario, String isbnLibro, LocalDate fechaPrestamo,
-                    LocalDate fechaDevolucion, int diasPrestamo) {
+    public Prestamo(String runUsuario, String isbnLibro, LocalDate fechaPrestamo, LocalDate fechaDevolucion, int diasPrestamo) {
         this.runUsuario = runUsuario;
         this.isbnLibro = isbnLibro;
         this.fechaPrestamo = fechaPrestamo;

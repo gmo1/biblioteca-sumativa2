@@ -37,7 +37,7 @@ public class MenuPrincipal extends JFrame {
         panelCentral.setBorder(BorderFactory.createEmptyBorder(30, 50, 30, 50));
 
         // Botones del menú
-        JButton btnUsuarios = crearBoton("Gestión de Usuarios", new Color(52, 152, 219));
+        JButton btnUsuarios = crearBoton("Gestión de Usuarios", new Color(52,152,219));
         JButton btnLibros = crearBoton("Gestión de Libros", new Color(46, 204, 113));
         JButton btnPrestamo = crearBoton("Realizar Préstamo", new Color(241, 196, 15));
         JButton btnDevolucion = crearBoton("Realizar Devolución", new Color(230, 126, 34));
@@ -70,10 +70,27 @@ public class MenuPrincipal extends JFrame {
         JButton boton = new JButton(texto);
         boton.setFont(new Font("Arial", Font.BOLD, 16));
         boton.setBackground(color);
-        boton.setForeground(Color.WHITE);
+        boton.setForeground(Color.GRAY);
         boton.setFocusPainted(false);
         boton.setBorder(BorderFactory.createRaisedBevelBorder());
         boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        
+        
+        final Color baseText = boton.getForeground();
+        final Color hoverText = Color.black;
+        final Color pressText = new Color(230,230,230);
+        
+        boton.addMouseListener(new java.awt.event.MouseAdapter() {
+        	@Override public void mouseEntered(java.awt.event.MouseEvent e) { boton.setForeground(hoverText); }
+            @Override public void mouseExited (java.awt.event.MouseEvent e) { boton.setForeground(baseText);  }
+            @Override public void mousePressed(java.awt.event.MouseEvent e) { boton.setForeground(pressText); }
+            @Override public void mouseReleased(java.awt.event.MouseEvent e) {
+            	if(boton.getBounds().contains(e.getPoint())) boton.setForeground(hoverText);
+            	else boton.setForeground(baseText);
+            }
+        });
+        
+        
         return boton;
     }
 

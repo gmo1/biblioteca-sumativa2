@@ -1,0 +1,4 @@
+1|Meditations|Marcus Aurelius|1|1|Meditations
+2|Habitos Atomicos|James Clear|1|1|Habitos Atomicos
+3|Carta al padre|Franz Kafka|1|1|Carta al padre
+4|Designing Data-Intensive Applications|Martin Kleppmann|1|1|Designing Data-Intensive Applications
